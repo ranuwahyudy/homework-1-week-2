@@ -4,7 +4,7 @@ const data = {
         artists: [
             {
                 external_urls: {
-                spotify: "https://open.spotify.com/artist/1dfeR4HaWDbWqFHLkxsg1d"
+                    spotify: "https://open.spotify.com/artist/1dfeR4HaWDbWqFHLkxsg1d"
                 },
                 href: "https://api.spotify.com/v1/artists/1dfeR4HaWDbWqFHLkxsg1d",
                 id: "1dfeR4HaWDbWqFHLkxsg1d",
@@ -25,14 +25,14 @@ const data = {
                 width: 640
             },
             {
-            height: 300,
-            url: "https://i.scdn.co/image/ab67616d00001e02e8b066f70c206551210d902b",
-            width: 300
+                height: 300,
+                url: "https://i.scdn.co/image/ab67616d00001e02e8b066f70c206551210d902b",
+                width: 300
             },
             {
-            height: 64,
-            url: "https://i.scdn.co/image/ab67616d00004851e8b066f70c206551210d902b",
-            width: 64
+                height: 64,
+                url: "https://i.scdn.co/image/ab67616d00004851e8b066f70c206551210d902b",
+                width: 64
             }
         ],
         name: "Bohemian Rhapsody (The Original Soundtrack)",
