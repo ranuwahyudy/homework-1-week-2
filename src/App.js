@@ -1,14 +1,13 @@
 import './App.css';
-import data from './Data';
+import Button from './components/button';
+import Song from './components/song';
 
 function App() {
   return (
     <div className="App">
       <div className='music-content'>
-        <img src={data.album.images[1].url} alt='Song Cover'/>
-        <h1 className='song-title'>{data.name}</h1>
-        <h2 className='song-artist'>{data.album.artists[0].name}</h2>
-        <button className='btn-select'>Select</button>
+        <Song />
+        <Button />
       </div>
     </div>
   );
