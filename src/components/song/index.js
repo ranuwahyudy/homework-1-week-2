@@ -1,12 +1,9 @@
 import React from "react";
 import data from "../../Data";
+import SongInfo from "./SongInfo";
 
 export default function Song() {
     return (
-        <div className="song">
-            <img src={data.album.images[1].url} alt='Song Cover'/>
-            <h1 className='song-title'>{data.name}</h1>
-            <h2 className='song-artist'>{data.album.artists[0].name}</h2>
-        </div>
+        <SongInfo key={data.id} image={data.album.images[0].url} title={data.album.name} album={data.artists[0].name} />
     );
 }
