@@ -1,11 +1,11 @@
 import React from "react";
 
-function Header() {
+function Header({token, setToken, logout}) {
     return (
-        <div className="background">
+        <div className="header">
             <nav className="container navbar">
-                <a className="navbar-brand" href="#">Spotify Clone App</a>
-                <a className="login" href="#">Login</a>
+                <a className="navbar-brand" href="https://www.spotify.com/" target="_blank" rel="noreferrer">Spotify Clone</a>
+                <button className="btn-logout" onClick={logout}>LOGOUT</button>
             </nav>
         </div>
     );

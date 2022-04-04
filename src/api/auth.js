@@ -1,5 +1,4 @@
 import {useEffect, useState} from "react";
-import Search from "../layouts/search";
 import Login from "../layouts/Login";
 
 function Auth() {
@@ -20,15 +19,11 @@ function Auth() {
 
     }, [])
 
-    if(token !== undefined){
-        return (
-            <Search token={token}/>
-        )
-    } else {
-        return (
-            <Login token={token} setToken={token}/>
-        )
-    }
+    return (
+        <>
+            <Login token={token} setToken={setToken} />
+        </>
+    )
 }
 
 export default Auth;
