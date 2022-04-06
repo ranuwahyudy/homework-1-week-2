@@ -9,6 +9,8 @@ function Login({token, setToken}) {
     const RESPONSE_TYPE = "token"
     const SCOPE = "playlist-modify-private"
 
+    const url = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&scope=${SCOPE}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`;
+
     const handleLogout = () => {
         setToken("")
         window.localStorage.removeItem("token")
@@ -17,18 +19,15 @@ function Login({token, setToken}) {
 
     return (
         <>
-            {!token ?
-                <div className="login-section">
-                    <a className="btn-login" href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login with Spotify</a>
-                </div>
-            : ""}
-
-            {token ?
-                <>
+            {
+                !token ?
+                    <div className="login-section">
+                        <a className="btn-login" href={url} >Login with Spotify</a>
+                    </div>
+                : <>
                     <Header logout={handleLogout} />
-                    <Search token={token}/>
+                    <Search token={token} url={url} />
                 </>
-                : ""
             }
         </>
     );
