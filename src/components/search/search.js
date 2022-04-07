@@ -3,8 +3,11 @@ import axios from "axios";
 import Login from "../../layouts/Login";
 import Card from "../card/card";
 import CreatePlaylist from "../playlist/CreatePlaylist";
+import { useSelector } from "react-redux";
 
-const Search = ({token, url}) => {
+const Search = ({url}) => {
+    const token = useSelector(state => state.user.token);
+
     const [searchKey, setSearchKey] = useState("")
     const [searchData, setSearchData] = useState([])
     const [selectedSongs, setSelectedSongs] = useState([])
@@ -66,7 +69,7 @@ const Search = ({token, url}) => {
                         <input type="text" className="input-search" placeholder="Artists, songs, or podcast" onChange={e => setSearchKey(e.target.value)} />
                         <button type={"submit"} className="btn-search">SEARCH</button>
                     </form>
-                </div><CreatePlaylist token={token} url={url} selectedSongs={selectedSongs} /></>
+                </div><CreatePlaylist url={url} selectedSongs={selectedSongs} /></>
 
                 : <Login />
             }

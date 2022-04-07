@@ -1,6 +1,6 @@
 import React from "react";
 
-function Header({token, setToken, logout}) {
+function Header({logout}) {
     return (
         <div className="header">
             <nav className="container navbar">

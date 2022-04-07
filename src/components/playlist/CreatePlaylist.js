@@ -1,8 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
 import Playlist from "./playlist";
+import { useSelector } from "react-redux";
 
-const CreatePlaylist = ({token, selectedSongs, url}) => {
+const CreatePlaylist = ({selectedSongs, url}) => {
+    const token = useSelector(state => state.user.token);
+
     const [user, setUser] = useState({
         displayName: '',
         imagesUrl: '',

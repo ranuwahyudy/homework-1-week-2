@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import accessToken from "./accessToken";
+import userReducer from "./slice";
 
-export default configureStore({
+export default configureStore ({
     reducer: {
-        dataAccessToken: accessToken
+        user: userReducer
     }
-});
+})

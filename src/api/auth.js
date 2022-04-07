@@ -1,14 +1,15 @@
-import {useEffect, useState} from "react";
-// import { useSelector, useDispatch } from 'react-redux';
-// import { dataAccessToken } from "./redux/dataAction";
+import {useEffect} from "react";
+import { useSelector, useDispatch } from 'react-redux';
 import Login from "../layouts/Login";
+import { setUserToken } from "./redux/slice";
 
 function Auth() {
-    const [token, setToken] = useState("")
+    const token = useSelector(state => state.user.token);
+    const dispatch = useDispatch();
     
     useEffect(() => {
-        const hash = window.location.hash
         let token = window.localStorage.getItem("token")
+        const hash = window.location.hash
 
         if(!token && hash) {
             token = hash.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1]
@@ -17,13 +18,13 @@ function Auth() {
             window.localStorage.setItem("token", token)
         }
 
-        setToken(token)
+        dispatch(setUserToken (token));
 
-    }, [])
+    }, [token, dispatch])
 
     return (
         <>
-            <Login token={token} setToken={setToken} />
+            <Login />
         </>
     )
 }
