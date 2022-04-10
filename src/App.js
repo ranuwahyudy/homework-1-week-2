@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import Auth from './api/auth';
 import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';

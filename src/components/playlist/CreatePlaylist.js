@@ -1,4 +1,5 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import PropTypes from 'prop-types';
 import axios from "axios";
 import Playlist from "./playlist";
 import { useSelector } from "react-redux";
@@ -93,6 +94,11 @@ const CreatePlaylist = ({selectedSongs, url}) => {
             />
         </>
     )
+}
+
+CreatePlaylist.propTypes = {
+    selectedSongs: PropTypes.array,
+    url: PropTypes.string
 }
 
 export default CreatePlaylist;

@@ -8,6 +8,7 @@ function Login() {
     const token = useSelector(state => state.user.token);
     const dispatch = useDispatch();
 
+    // eslint-disable-next-line no-undef
     const CLIENT_ID = process.env.REACT_APP_SPOTIFY_KEY
     const REDIRECT_URI = "http://localhost:3000/"
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"

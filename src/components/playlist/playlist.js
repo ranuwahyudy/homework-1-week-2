@@ -1,3 +1,6 @@
+import React from "react";
+import PropTypes from 'prop-types';
+
 const Playlist = ({addPlaylist, handleAddPlaylistChange, handleAddPlaylistSubmit, getUserData}) => {
     return (
         <form className="form-playlist container" onChange={getUserData} onSubmit={handleAddPlaylistSubmit}>
@@ -15,6 +18,13 @@ const Playlist = ({addPlaylist, handleAddPlaylistChange, handleAddPlaylistSubmit
             </div>
         </form>
     )
+}
+
+Playlist.propTypes = {
+    addPlaylist: PropTypes.object,
+    handleAddPlaylistChange: PropTypes.func,
+    handleAddPlaylistSubmit: PropTypes.func,
+    getUserData: PropTypes.func
 }
 
 export default Playlist;

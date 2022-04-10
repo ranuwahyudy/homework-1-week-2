@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import PropTypes from 'prop-types';
 import axios from "axios";
 import Login from "../../layouts/Login";
 import Card from "../card/card";
@@ -77,6 +78,10 @@ const Search = ({url}) => {
             {renderTrackData()}
         </>
     );
+}
+
+Search.propTypes = {
+    url: PropTypes.string
 }
 
 export default Search;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 function Header({logout}) {
     return (
@@ -9,6 +10,10 @@ function Header({logout}) {
             </nav>
         </div>
     );
+}
+
+Header.propTypes = {
+    logout: PropTypes.func
 }
 
 export default Header;

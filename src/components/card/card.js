@@ -1,6 +1,7 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
-const Card = ({ uri, image, title, album, selectState, isSelectedSongs, isSelected }) => {
+const Card = ({ uri, image, title, album, selectState, isSelectedSongs }) => {
     return (
         <>
                 <div className="container music-list">
@@ -20,6 +21,15 @@ const Card = ({ uri, image, title, album, selectState, isSelectedSongs, isSelect
                 </div>
             </>
     );
+}
+
+Card.propTypes = {
+    uri: PropTypes.string,
+    image: PropTypes.string,
+    title: PropTypes.string,
+    album: PropTypes.string,
+    selectState: PropTypes.func,
+    isSelectedSongs: PropTypes.array
 }
 
 export default Card;
