@@ -75,7 +75,10 @@ const Search = ({url}) => {
                 : <Login />
             }
 
-            {renderTrackData()}
+            <div className="music container">
+                {renderTrackData()}
+            </div>
+            
         </>
     );
 }
