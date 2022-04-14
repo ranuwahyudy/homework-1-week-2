@@ -1,24 +1,48 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import { Button } from "@mui/material";
+import Box from '@mui/material/Box';
+import Cards from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import { grey } from '@mui/material/colors';
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "../../styles/Styles";
 
-const Card = ({ uri, image, title, album, selectState, isSelectedSongs }) => {
+const Card = ({ uri, image, title, album, isSelectedSongs, selectState }) => {
     return (
         <>
-            <div className="container music-list">
-                <div key={uri} className="music-cover">
-                    <img className="cover" src={image} alt="Album" />
-                </div>
-                <div className="music-title">
-                    <h3>{title}</h3>
-                    <p>{album}</p>
-                    {/* <button className={`btn-select`} onClick={() => selectState(uri)} > {isSelected ? "DESELECT" : "SELECT"} </button> */}
-                    {isSelectedSongs.includes(uri) ? (
-                        <button className="btn-deselect" onClick={() => selectState(uri)}>DESELECT</button>
-                    ) : (
-                        <button className="btn-select" onClick={() => selectState(uri)}>SELECT</button>
-                    )}
-                </div>
-            </div>
+            <Cards sx={{ display: 'flex', backgroundColor: "#000000", borderRadius: "10px", padding: "15px", alignItems: "center" }}>
+                <CardMedia
+                    uri={uri}
+                    component="img"
+                    sx={{ width: 120, height: 120, objectFit: "cover", borderRadius: "7px" }}
+                    image={image}
+                    alt="Album"
+                />
+                <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: "center", paddingLeft: "15px" }}>
+                    <ThemeProvider theme={theme}>
+                        <CardContent sx={{ display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "0px", '&:last-child': { padding: 0 } }}>
+                            <Typography component="div" color={grey[50]}>
+                                {title}
+                            </Typography>
+                            <Typography variant="subtitle2" color={grey[400]} component="div" gutterBottom>
+                                {album}
+                            </Typography>
+                            {isSelectedSongs.includes(uri) ? (
+                                <ThemeProvider theme={theme}>
+                                    <Button onClick={() => selectState(uri)} variant="contained" size="small">DESELECT</Button>
+                                </ThemeProvider>
+                            ) : (
+                                <ThemeProvider theme={theme}>
+                                    <Button onClick={() => selectState(uri)} variant="contained" size="small" color="secondary">SELECT</Button>
+                                </ThemeProvider>
+                            )}
+                        </CardContent>
+                    </ThemeProvider>
+                </Box>
+            </Cards>
         </>
     );
 }

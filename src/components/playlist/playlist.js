@@ -1,5 +1,8 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import { Button } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "../../styles/Styles";
 
 const Playlist = ({addPlaylist, handleAddPlaylistChange, handleAddPlaylistSubmit, getUserData}) => {
     return (
@@ -14,7 +17,9 @@ const Playlist = ({addPlaylist, handleAddPlaylistChange, handleAddPlaylistSubmit
                 <input className="input-desc" type="text" placeholder="Playlist Description" id="description" name="description" onChange={handleAddPlaylistChange} value={addPlaylist.description} required />
             </div>
             <div>
-                <input className="btn-create" value="CREATE" type="submit" />
+                <ThemeProvider theme={theme}>
+                    <Button type="submit" variant="contained" size="large" color="secondary" sx={{fontWeight: "bold"}}>CREATE</Button>
+                </ThemeProvider>
             </div>
         </form>
     )

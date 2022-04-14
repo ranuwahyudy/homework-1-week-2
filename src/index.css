@@ -173,6 +173,7 @@ nav a {
 .search-bar {
   margin-top: 50px;
   margin-bottom: 50px;
+  text-align: center;
 }
 
 .input-search {

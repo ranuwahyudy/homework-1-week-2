@@ -3,6 +3,9 @@ import Header from "./header";
 import Search from "../components/search/search";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserToken } from "../api/redux/slice";
+import { Button } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "../styles/Styles";
 
 function Login() {
     const token = useSelector(state => state.user.token);
@@ -28,7 +31,9 @@ function Login() {
             {
                 !token ?
                     <div className="login-section">
-                        <a className="btn-login" href={url} >Login with Spotify</a>
+                        <ThemeProvider theme={theme}>
+                            <Button href={url} variant="contained" size="large" sx={{fontSize: 20}}>Login with Spotify</Button>
+                        </ThemeProvider>
                     </div>
                 : <>
                     <Header logout={handleLogout} />
