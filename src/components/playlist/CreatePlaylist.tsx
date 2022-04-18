@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import PropTypes from 'prop-types';
-import axios from "axios";
+import axios, {AxiosResponse} from "axios";
 import Playlist from "./playlist";
 import { useSelector } from "react-redux";
+import { Token } from "components/search/search";
 
-const CreatePlaylist = ({selectedSongs, url}) => {
-    const token = useSelector(state => state.user.token);
+const CreatePlaylist = ({selectedSongs, url}: any) => {
+    const token = useSelector((state: Token) => state.token.value);
 
     const [user, setUser] = useState({
         displayName: '',
@@ -43,12 +44,12 @@ const CreatePlaylist = ({selectedSongs, url}) => {
         Authorization: `Bearer ${token}`
     }
     
-    const handleAddPlaylistChange = e => {
+    const handleAddPlaylistChange = (e: any) => {
         const { name, value } = e.target;
         setAddPlaylist({ ...addPlaylist, [name]: value })
     }
     
-    const handleAddPlaylistSubmit = async e => {
+    const handleAddPlaylistSubmit = async (e: any) => {
         e.preventDefault();
         console.log(addPlaylist);
         await axios
@@ -58,9 +59,9 @@ const CreatePlaylist = ({selectedSongs, url}) => {
                     headers: header
                 }
             )
-            .then((response) => (
+            .then((response: AxiosResponse) => (
                 handleAddItemToPlaylist(response.data.id)),
-                alert("Successfully created playlist!")
+                // alert("Successfully created playlist!")
             )
             .catch((error) => error)
     }
@@ -69,7 +70,7 @@ const CreatePlaylist = ({selectedSongs, url}) => {
         uris: selectedSongs
     }
     
-    const handleAddItemToPlaylist = async (id) => {
+    const handleAddItemToPlaylist = async (id: any) => {
         setPlaylistID(id);
         const data = await axios
             .post(

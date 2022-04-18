@@ -6,15 +6,50 @@ import Card from "../card/card";
 import CreatePlaylist from "../playlist/CreatePlaylist";
 import { useSelector } from "react-redux";
 
-const Search = ({url}) => {
-    const token = useSelector(state => state.user.token);
+export interface Token {
+    token: {
+        value: string;
+    };
+}
 
-    const [searchKey, setSearchKey] = useState("")
-    const [searchData, setSearchData] = useState([])
-    const [selectedSongs, setSelectedSongs] = useState([])
-    const [combineSongs, setCombineSongs] = useState([])
+interface Search {
+    url: string;
+}
 
-    const searchTrack = async (e) => {
+export interface songData {
+    uri: string;
+    album: {
+        images: [{ url: string }];
+    };
+    name: string;
+    artists: [{ name: string }];
+    isSelected: boolean;
+    isSelectedSongs: any;
+}
+
+export interface songInterface {
+    uri: string;
+    image: string;
+    title: string;
+    album: string;
+    selectState: (uri: string) => void;
+    isSelected: boolean;
+    isSelectedSongs: any;
+}
+
+interface Select {
+    uri: string;
+}
+
+const Search = ({url}:Search) => {
+    const token = useSelector((state: Token) => state.token.value);
+
+    const [searchKey, setSearchKey] = useState("");
+    const [searchData, setSearchData] = useState<songData[]>([]);
+    const [selectedSongs, setSelectedSongs] = useState<Select["uri"][]>([]);
+    const [combineSongs, setCombineSongs] = useState<songData[]>([]);
+
+    const searchTrack = async (e: any) => {
         e.preventDefault()
         const {data} = await axios.get("https://api.spotify.com/v1/search", {
             headers: {
@@ -30,14 +65,14 @@ const Search = ({url}) => {
     }
 
     useEffect(() => {
-        const handleCombineTracks = searchData.map((song) => ({
+        const handleCombineTracks = searchData.map((song: songData) => ({
             ...song,
-                isSelected: selectedSongs.find((data) => data === song.uri),
+                isSelected: !selectedSongs.find((data) => data === song.uri),
         }));
         setCombineSongs(handleCombineTracks);
     }, [searchData, selectedSongs]);
 
-    const handleSelect = (uri) => {
+    const handleSelect = (uri: string) => {
         const selected = selectedSongs.find((song) => song === uri);
         selected
             ? setSelectedSongs(selectedSongs.filter((song) => song !== uri))

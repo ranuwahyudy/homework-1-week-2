@@ -9,11 +9,6 @@ const theme = createTheme({
             main: '#ffffff',
         },
     },
-    props: {
-        MuiButton: {
-            disableRipple: true,
-        },
-    },
     shape: {
         borderRadius: 30,
     },

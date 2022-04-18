@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { Button } from "@mui/material";
 import Box from '@mui/material/Box';
 import Cards from '@mui/material/Card';
@@ -9,13 +9,13 @@ import Typography from '@mui/material/Typography';
 import { grey } from '@mui/material/colors';
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../../styles/Styles";
+import { songInterface } from "components/search/search";
 
-const Card = ({ uri, image, title, album, isSelectedSongs, selectState }) => {
+const Card = ({ uri, image, title, album, isSelectedSongs, selectState }: songInterface) => {
     return (
         <>
             <Cards sx={{ display: 'flex', backgroundColor: "#000000", borderRadius: "10px", padding: "15px", alignItems: "center" }}>
                 <CardMedia
-                    uri={uri}
                     component="img"
                     sx={{ width: 120, height: 120, objectFit: "cover", borderRadius: "7px" }}
                     image={image}
@@ -47,13 +47,13 @@ const Card = ({ uri, image, title, album, isSelectedSongs, selectState }) => {
     );
 }
 
-Card.propTypes = {
-    uri: PropTypes.string,
-    image: PropTypes.string,
-    title: PropTypes.string,
-    album: PropTypes.string,
-    selectState: PropTypes.func,
-    isSelectedSongs: PropTypes.array
-}
+// Card.propTypes = {
+//     uri: PropTypes.string,
+//     image: PropTypes.string,
+//     title: PropTypes.string,
+//     album: PropTypes.string,
+//     selectState: PropTypes.func,
+//     isSelectedSongs: PropTypes.array
+// }
 
 export default Card;

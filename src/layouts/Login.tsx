@@ -6,9 +6,10 @@ import { setUserToken } from "../api/redux/slice";
 import { Button } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../styles/Styles";
+import { Token } from "../components/search/search";
 
 function Login() {
-    const token = useSelector(state => state.user.token);
+    const token = useSelector((state: Token) => state.token.value);
     const dispatch = useDispatch();
 
     // eslint-disable-next-line no-undef
