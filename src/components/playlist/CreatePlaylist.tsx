@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import PropTypes from 'prop-types';
-import axios, {AxiosResponse} from "axios";
+// import PropTypes from 'prop-types';
+import axios from "axios";
 import Playlist from "./playlist";
 import { useSelector } from "react-redux";
 import { Token } from "components/search/search";
@@ -32,7 +32,7 @@ const CreatePlaylist = ({selectedSongs, url}: any) => {
         description: '',
     })
     
-    const [playlistID, setPlaylistID] = useState(url);
+    const [playlistID, setPlaylistID] = useState<string>(url);
     const bodyParams = {
         name: addPlaylist.name,
         description: addPlaylist.description,
@@ -44,7 +44,12 @@ const CreatePlaylist = ({selectedSongs, url}: any) => {
         Authorization: `Bearer ${token}`
     }
     
-    const handleAddPlaylistChange = (e: any) => {
+    // const handleAddPlaylistChange = (e: any) => {
+    //     const { name, value } = e.target;
+    //     setAddPlaylist({ ...addPlaylist, [name]: value })
+    // }
+
+    const handleAddPlaylistChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> = (e) => {
         const { name, value } = e.target;
         setAddPlaylist({ ...addPlaylist, [name]: value })
     }
@@ -59,7 +64,7 @@ const CreatePlaylist = ({selectedSongs, url}: any) => {
                     headers: header
                 }
             )
-            .then((response: AxiosResponse) => (
+            .then((response) => (
                 handleAddItemToPlaylist(response.data.id)),
                 // alert("Successfully created playlist!")
             )
@@ -89,17 +94,17 @@ const CreatePlaylist = ({selectedSongs, url}: any) => {
                 handleAddPlaylistChange={handleAddPlaylistChange}
                 handleAddPlaylistSubmit={handleAddPlaylistSubmit}
                 addPlaylist={addPlaylist}
-                playlistID={playlistID}
-                selectedSongs={selectedSongs}
+                key={playlistID}
+                // selectedSongs={selectedSongs}
                 getUserData={getUserData}
             />
         </>
     )
 }
 
-CreatePlaylist.propTypes = {
-    selectedSongs: PropTypes.array,
-    url: PropTypes.string
-}
+// CreatePlaylist.propTypes = {
+//     selectedSongs: PropTypes.array,
+//     url: PropTypes.string
+// }
 
 export default CreatePlaylist;
