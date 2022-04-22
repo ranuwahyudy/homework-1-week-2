@@ -12,12 +12,14 @@ function Login() {
     const token = useSelector((state) => state.user.token);
     const dispatch = useDispatch();
 
+    // const redirect = "http://localhost:3000/" || "https://generasi-gigih-homework-ranuwahyudy.vercel.app/" || "https://generasi-gigih-homework-git-main-ranuwahyudy.vercel.app/" || "https://generasi-gigih-homework-h60kpiff4-ranuwahyudy.vercel.app/";
+
     // eslint-disable-next-line no-undef
-    const CLIENT_ID = process.env.REACT_APP_SPOTIFY_KEY
-    const REDIRECT_URI = "http://localhost:3000/"
-    const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
-    const RESPONSE_TYPE = "token"
-    const SCOPE = "playlist-modify-private"
+    const CLIENT_ID = process.env.REACT_APP_SPOTIFY_KEY;
+    const REDIRECT_URI = window.location.origin + '/';
+    const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
+    const RESPONSE_TYPE = "token";
+    const SCOPE = "playlist-modify-private";
 
     const url = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&scope=${SCOPE}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`;
 
