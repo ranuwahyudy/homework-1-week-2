@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import Login from "../layouts/Login";
-import { setUserToken } from "./redux/slice";
+import { setUserToken } from "../redux/slice";
 
 function Auth() {
     const token = useSelector(state => state.user.token);
@@ -17,6 +17,7 @@ function Auth() {
             window.location.hash = ""
             window.localStorage.setItem("token", token)
         }
+        document.title = "Login";
 
         dispatch(setUserToken (token));
 

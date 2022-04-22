@@ -1,17 +1,10 @@
 import React from "react";
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Button } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../../styles/Styles";
 
-interface Props {
-    addPlaylist: any;
-    handleAddPlaylistChange: any;
-    handleAddPlaylistSubmit: React.FormEventHandler<HTMLFormElement>;
-    getUserData: any;
-}
-
-const Playlist = ({addPlaylist, handleAddPlaylistChange, handleAddPlaylistSubmit, getUserData}: Props) => {
+const Playlist = ({addPlaylist, handleAddPlaylistChange, handleAddPlaylistSubmit, getUserData}) => {
     return (
         <form className="form-playlist container" onChange={getUserData} onSubmit={handleAddPlaylistSubmit}>
             <h1>Create Playlist</h1>
@@ -32,11 +25,11 @@ const Playlist = ({addPlaylist, handleAddPlaylistChange, handleAddPlaylistSubmit
     )
 }
 
-// Playlist.propTypes = {
-//     addPlaylist: PropTypes.object,
-//     handleAddPlaylistChange: PropTypes.func,
-//     handleAddPlaylistSubmit: PropTypes.func,
-//     getUserData: PropTypes.func
-// }
+Playlist.propTypes = {
+    addPlaylist: PropTypes.object,
+    handleAddPlaylistChange: PropTypes.func,
+    handleAddPlaylistSubmit: PropTypes.func,
+    getUserData: PropTypes.func
+}
 
 export default Playlist;

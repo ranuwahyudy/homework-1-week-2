@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import axios from "axios";
 import Playlist from "./playlist";
 import { useSelector } from "react-redux";
-import { Token } from "components/search/search";
 
-const CreatePlaylist = ({selectedSongs, url}: any) => {
-    const token = useSelector((state: Token) => state.token.value);
+const CreatePlaylist = ({selectedSongs, url}) => {
+    const token = useSelector((state) => state.user.token);
 
     const [user, setUser] = useState({
         displayName: '',
@@ -32,7 +31,7 @@ const CreatePlaylist = ({selectedSongs, url}: any) => {
         description: '',
     })
     
-    const [playlistID, setPlaylistID] = useState<string>(url);
+    const [playlistID, setPlaylistID] = useState(url);
     const bodyParams = {
         name: addPlaylist.name,
         description: addPlaylist.description,
@@ -43,18 +42,13 @@ const CreatePlaylist = ({selectedSongs, url}: any) => {
     const header = {
         Authorization: `Bearer ${token}`
     }
-    
-    // const handleAddPlaylistChange = (e: any) => {
-    //     const { name, value } = e.target;
-    //     setAddPlaylist({ ...addPlaylist, [name]: value })
-    // }
 
-    const handleAddPlaylistChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> = (e) => {
+    const handleAddPlaylistChange = (e) => {
         const { name, value } = e.target;
         setAddPlaylist({ ...addPlaylist, [name]: value })
     }
     
-    const handleAddPlaylistSubmit = async (e: any) => {
+    const handleAddPlaylistSubmit = async (e) => {
         e.preventDefault();
         console.log(addPlaylist);
         await axios
@@ -66,7 +60,7 @@ const CreatePlaylist = ({selectedSongs, url}: any) => {
             )
             .then((response) => (
                 handleAddItemToPlaylist(response.data.id)),
-                // alert("Successfully created playlist!")
+                alert("Successfully created playlist!")
             )
             .catch((error) => error)
     }
@@ -75,7 +69,7 @@ const CreatePlaylist = ({selectedSongs, url}: any) => {
         uris: selectedSongs
     }
     
-    const handleAddItemToPlaylist = async (id: any) => {
+    const handleAddItemToPlaylist = async (id) => {
         setPlaylistID(id);
         const data = await axios
             .post(
@@ -94,17 +88,17 @@ const CreatePlaylist = ({selectedSongs, url}: any) => {
                 handleAddPlaylistChange={handleAddPlaylistChange}
                 handleAddPlaylistSubmit={handleAddPlaylistSubmit}
                 addPlaylist={addPlaylist}
-                key={playlistID}
-                // selectedSongs={selectedSongs}
+                playlistID={playlistID}
+                selectedSongs={selectedSongs}
                 getUserData={getUserData}
             />
         </>
     )
 }
 
-// CreatePlaylist.propTypes = {
-//     selectedSongs: PropTypes.array,
-//     url: PropTypes.string
-// }
+CreatePlaylist.propTypes = {
+    selectedSongs: PropTypes.array,
+    url: PropTypes.string
+}
 
 export default CreatePlaylist;

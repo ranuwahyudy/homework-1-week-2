@@ -1,21 +1,17 @@
-import { render } from "@testing-library/react"
-import React from "react"
-import Card from "./card"
+import React from 'react';
+import Card from "./card";
+import { render, screen } from "@testing-library/react";
 
-test('Render track component', () => {
-    render (
-        <Card 
-            uri={"testuri"} 
-            image={"testimage"} 
-            title={"It'll Be Okay"} 
-            album={"When You're Gone"} 
-            selectState={function (uri: string): void {
-                throw new Error("Function not implemented.")
-        } } 
-        isSelected={false}
-        isSelectedSongs={undefined} />
-    );
-    expect(screen.getByText(image)).toBeInTheDocument();
-    expect(screen.getByText(title)).toBeInTheDocument();
-    expect(screen.getByText(album)).toBeInTheDocument();
-})
+test('Render card component', () => {
+    render(<Card />)
+
+    const song = screen.getByTestId('song-image')
+    const title = screen.getByLabelText('song-title')
+    const album = screen.getByLabelText('song-album')
+    const button = screen.getByLabelText('song-button')
+
+    expect(song).toBeInTheDocument()
+    expect(title).toBeInTheDocument()
+    expect(album).toBeInTheDocument()
+    expect(button).toBeInTheDocument()
+});

@@ -1,15 +1,15 @@
 import React from "react";
 import Header from "./header";
-import Search from "../components/search/search";
+import Search from "../components/search/SearchSong";
 import { useDispatch, useSelector } from "react-redux";
-import { setUserToken } from "../api/redux/slice";
+import { setUserToken } from "../redux/slice";
 import { Button } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../styles/Styles";
-import { Token } from "../components/search/search";
+// import { Token } from "../components/search/search";
 
 function Login() {
-    const token = useSelector((state: Token) => state.token.value);
+    const token = useSelector((state) => state.user.token);
     const dispatch = useDispatch();
 
     // eslint-disable-next-line no-undef
