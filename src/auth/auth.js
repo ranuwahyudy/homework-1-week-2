@@ -17,7 +17,7 @@ function Auth() {
             window.location.hash = ""
             window.localStorage.setItem("token", token)
         }
-        document.title = "Login";
+        document.title = "Spotify";
 
         dispatch(setUserToken (token));
 
