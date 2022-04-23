@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 import axios from "axios";
 import Login from "../../layouts/Login";
-// import Card from "../card/card";
 import CreatePlaylist from "../playlist/CreatePlaylist";
 import { useSelector } from "react-redux";
 import Search from "./search";
+import { Container, FormControl, IconButton, InputAdornment, OutlinedInput } from "@mui/material";
+import SearchIcon from '@mui/icons-material/Search';
 
 const SearchSong = ({url}) => {
     const token = useSelector((state) => state.user.token);
@@ -45,34 +46,33 @@ const SearchSong = ({url}) => {
             : setSelectedSongs([...selectedSongs, uri]);
     };
 
-    // const renderTrackData = () => {
-    //     return combineSongs.map((data) => {
-    //         const { uri, name, artists, album, isSelected } = data;
-    //         return (
-    //             <Card 
-    //                 key={uri}
-    //                 uri={uri}
-    //                 image={album.images[0]?.url}
-    //                 title={name}
-    //                 album={artists[0]?.name}
-    //                 selectState={handleSelect}
-    //                 isSelected={isSelected}
-    //                 isSelectedSongs={selectedSongs}
-    //             />
-    //         )
-    //     })
-    // }
-
     return (
         <>
             {token ?
                 <>
-                    <div className="search-bar">
-                        <form onSubmit={searchTrack}>
-                            <input type="text" className="input-search" placeholder="Artists, songs, or podcast" onChange={e => setSearchKey(e.target.value)} />
-                            <button type={"submit"} className="btn-search">SEARCH</button>
-                        </form>
-                    </div>
+                    <Container maxWidth='xs' sx={{marginTop: "70px"}}>
+                            <FormControl sx={{ width: '100%' }} variant="outlined">
+                                <OutlinedInput
+                                    id="outlined-adornment-weight"
+                                    placeholder="Artists, songs, or podcast"
+                                    onChange={(e) => {setSearchKey(e.target.value);}}
+                                    onKeyUp={searchTrack}
+                                    endAdornment={
+                                        <InputAdornment position="end" onClick={searchTrack}>
+                                                <IconButton edge="end" color="secondary">
+                                                    <SearchIcon />
+                                                </IconButton>
+                                        </InputAdornment>
+                                    }
+                                    aria-describedby="outlined-weight-helper-text"
+                                    inputProps={{
+                                        'aria-label': 'weight',
+                                    }}
+                                    sx={{borderRadius:"50px", backgroundColor: "white", marginBottom:"20px"}}
+                                />
+                            </FormControl>
+                    </Container>
+
                     <CreatePlaylist url={url} selectedSongs={selectedSongs} />
                 </>
 

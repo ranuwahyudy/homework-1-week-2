@@ -6,13 +6,10 @@ import { setUserToken } from "../redux/slice";
 import { Button } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../styles/Styles";
-// import { Token } from "../components/search/search";
 
 function Login() {
     const token = useSelector((state) => state.user.token);
     const dispatch = useDispatch();
-
-    // const redirect = "http://localhost:3000/" || "https://generasi-gigih-homework-ranuwahyudy.vercel.app/" || "https://generasi-gigih-homework-git-main-ranuwahyudy.vercel.app/" || "https://generasi-gigih-homework-h60kpiff4-ranuwahyudy.vercel.app/";
 
     // eslint-disable-next-line no-undef
     const CLIENT_ID = process.env.REACT_APP_SPOTIFY_KEY;
